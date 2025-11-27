@@ -73,8 +73,10 @@ pipeline {
                     
                     // Copy the generated report to your local Git repo folder
                    // Copy the generated report to your local Git repo folder
-                    bat "xcopy /E /I /H /Y ${WORKSPACE}\\${REPORT_DIR} ${LOCAL_REPORT_DIR}\\${REPORT_DIR}"
-                    bat "xcopy /E /I /H /Y ${WORKSPACE}\\${HTML_REPORT_DIR} ${LOCAL_REPORT_DIR}\\${HTML_REPORT_DIR}"
+                   bat "robocopy ${WORKSPACE}\\${REPORT_DIR} ${LOCAL_REPORT_DIR}\\${REPORT_DIR} /E"
+                   bat "robocopy ${WORKSPACE}\\${HTML_REPORT_DIR} ${LOCAL_REPORT_DIR}\\${HTML_REPORT_DIR} /E"
+
+
                 }
             }
         }
