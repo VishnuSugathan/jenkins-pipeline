@@ -2,18 +2,17 @@ pipeline {
     agent any
 
     environment {
-        // Define paths and files
-        JMETER_HOME = 'C:\\Users\\Administrator\\Downloads\\apache-jmeter-5.6.3\\apache-jmeter-5.6.3'  // Update with your JMeter installation path
+        JMETER_HOME = 'C:\\Users\\Administrator\\Downloads\\apache-jmeter-5.6.3\\apache-jmeter-5.6.3'
         REPO_URL = 'https://github.com/VishnuSugathan/jenkins-pipeline.git'
-        JMX_FILE = 'jenkins-pipeline/Get_Request.jmx'  // Update path to match repository structure
-        REPORT_DIR = 'jmeter_reports'  // Directory to store the reports
-        RESULT_FILE = 'result.jtl'  // JMeter result file
+        JMX_FILE = 'jenkins-pipeline/Get_Request.jmx'
+        REPORT_DIR = 'jmeter_reports'
+        RESULT_FILE = 'result.jtl'
+        HTML_REPORT_DIR = 'jmeter_reports\\html_report'  // Define the HTML report directory
     }
-    
+
     stages {
         stage('Checkout') {
             steps {
-                // Clone the repository to get the JMX file
                 git url: "${REPO_URL}", branch: 'main'
             }
         }
@@ -21,9 +20,13 @@ pipeline {
         stage('Run JMeter Test') {
             steps {
                 script {
-                    // Ensure JMeter directory exists and run the test
+                    // Create the report directories if they don't exist
+                    bat "mkdir ${WORKSPACE}\\${REPORT_DIR}"
+                    bat "mkdir ${WORKSPACE}\\${HTML_REPORT_DIR}"
+
+                    // Run JMeter test
                     bat """
-                    "${JMETER_HOME}\\bin\\jmeter" -n -t "${WORKSPACE}\\${JMX_FILE}" -l "${WORKSPACE}\\${REPORT_DIR}\\${RESULT_FILE}" -e -o "${WORKSPACE}\\${REPORT_DIR}\\html_report"
+                    "${JMETER_HOME}\\bin\\jmeter" -n -t "${WORKSPACE}\\${JMX_FILE}" -l "${WORKSPACE}\\${REPORT_DIR}\\${RESULT_FILE}" -e -o "${WORKSPACE}\\${HTML_REPORT_DIR}"
                     """
                 }
             }
