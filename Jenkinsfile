@@ -4,7 +4,7 @@ pipeline {
     environment {
         JMETER_HOME = 'C:\\Users\\Administrator\\Downloads\\apache-jmeter-5.6.3\\apache-jmeter-5.6.3'
         REPO_URL = 'https://github.com/VishnuSugathan/jenkins-pipeline.git'
-        JMX_FILE = 'jenkins-pipeline/Get_Request.jmx'
+        JMX_FILE = 'D:\\jenkins-pipeline\\Get_Request.jmx'
         REPORT_DIR = 'jmeter_reports'
         RESULT_FILE = 'result.jtl'
         HTML_REPORT_DIR = 'jmeter_reports\\html_report'
