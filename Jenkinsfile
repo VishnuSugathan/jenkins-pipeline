@@ -26,7 +26,7 @@ pipeline {
 
                     // Run JMeter test
                     bat """
-                    "${JMETER_HOME}\\bin\\jmeter" -n -t "${WORKSPACE}\\${JMX_FILE}" -l "${WORKSPACE}\\${REPORT_DIR}\\${RESULT_FILE}" -e -o "${WORKSPACE}\\${HTML_REPORT_DIR}"
+                    "${JMETER_HOME}\\bin\\jmeter" -n -t "${JMX_FILE}" -l "${WORKSPACE}\\${REPORT_DIR}\\${RESULT_FILE}" -e -o "${WORKSPACE}\\${HTML_REPORT_DIR}"
                     """
                 }
             }
