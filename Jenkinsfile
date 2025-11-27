@@ -24,7 +24,12 @@ pipeline {
             steps {
                 script {
                     // Create the report directories if they don't exist
-                    bat "mkdir ${WORKSPACE}\\${REPORT_DIR}"
+                    // Check if the report directory exists, create it only if it doesn't
+                    bat """
+                    if not exist "${WORKSPACE}\\${REPORT_DIR}" (
+                        mkdir ${WORKSPACE}\\${REPORT_DIR}
+                    )
+                    """
                     // bat "mkdir ${WORKSPACE}\\${HTML_REPORT_DIR}"
 
                     // Run JMeter test with the output format set to CSV
