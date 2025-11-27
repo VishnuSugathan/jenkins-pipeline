@@ -1,29 +1,38 @@
 pipeline {
-    agent any  // Runs on any available agent
+    agent any
+
+    environment {
+        // Define paths and files
+        JMETER_HOME = 'C:\\Users\\Administrator\\Downloads\\apache-jmeter-5.6.3\\apache-jmeter-5.6.3'  // Update with your JMeter installation path
+        REPO_URL = 'https://github.com/VishnuSugathan/jenkins-pipeline.git'
+        JMX_FILE = 'jenkins-pipeline/Get_Request.jmx'  // Update path to match repository structure
+        REPORT_DIR = 'jmeter_reports'  // Directory to store the reports
+        RESULT_FILE = 'result.jtl'  // JMeter result file
+    }
+    
     stages {
-        stage('Build') {
+        stage('Checkout') {
             steps {
-                echo 'Building the project...'
-                // You can add build commands here, e.g., invoking Maven, Gradle, etc.
+                // Clone the repository to get the JMX file
+                git url: "${REPO_URL}", branch: 'main'
             }
         }
-        stage('Test') {
+
+        stage('Run JMeter Test') {
             steps {
-                echo 'Running tests...'
-                // You can add test commands here, e.g., running unit tests
+                script {
+                    // Ensure JMeter directory exists and run the test
+                    bat """
+                    "${JMETER_HOME}\\bin\\jmeter" -n -t "${WORKSPACE}\\${JMX_FILE}" -l "${WORKSPACE}\\${REPORT_DIR}\\${RESULT_FILE}" -e -o "${WORKSPACE}\\${REPORT_DIR}\\html_report"
+                    """
+                }
             }
         }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying the application...'
-                // You can add deployment commands here, e.g., using Docker or Kubernetes
-            }
-        }
-        stage('Notify') {
-            steps {
-                echo 'Sending notification...'
-                // You can add notification commands here, e.g., sending an email or Slack message
-            }
+    }
+
+    post {
+        always {
+            cleanWs()  // Clean workspace after the run
         }
     }
 }
