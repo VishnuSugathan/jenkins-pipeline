@@ -19,5 +19,11 @@ pipeline {
                 // You can add deployment commands here, e.g., using Docker or Kubernetes
             }
         }
+        stage('Notify') {
+            steps {
+                echo 'Sending notification...'
+                // You can add notification commands here, e.g., sending an email or Slack message
+            }
+        }
     }
 }
