@@ -79,20 +79,20 @@ pipeline {
             }
         }
 
-        stage('Push Reports to Git') {
-            steps {
-                script {
-                    // Ensure the local repo is up to date before pushing
-                    bat """
-                    cd ${LOCAL_REPORT_DIR}
-                    git pull origin main  // Ensure we're up to date with the remote repo
-                    git add .
-                    git commit -m "Adding JMeter test results"
-                    git push origin main
-                    """
-                }
-            }
-        }
+        // stage('Push Reports to Git') {
+        //     steps {
+        //         script {
+        //             // Ensure the local repo is up to date before pushing
+        //             bat """
+        //             cd ${LOCAL_REPORT_DIR}
+        //             git pull origin main  // Ensure we're up to date with the remote repo
+        //             git add .
+        //             git commit -m "Adding JMeter test results"
+        //             git push origin main
+        //             """
+        //         }
+        //     }
+        // }
     }
 
     post {
