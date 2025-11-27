@@ -28,8 +28,11 @@ pipeline {
                     // bat "mkdir ${WORKSPACE}\\${HTML_REPORT_DIR}"
 
                     // Run JMeter test with the output format set to CSV
+                    // bat """
+                    // "${JMETER_HOME}\\bin\\jmeter" -n -t "${JMX_FILE}" -l "${WORKSPACE}\\${REPORT_DIR}\\${RESULT_FILE}" -e -o "${WORKSPACE}\\${HTML_REPORT_DIR}" -Jjmeter.save.saveservice.output_format=csv
+                    // """
                     bat """
-                    "${JMETER_HOME}\\bin\\jmeter" -n -t "${JMX_FILE}" -l "${WORKSPACE}\\${REPORT_DIR}\\${RESULT_FILE}" -e -o "${WORKSPACE}\\${HTML_REPORT_DIR}" -Jjmeter.save.saveservice.output_format=csv
+                    "${JMETER_HOME}\\bin\\jmeter" -n -t "${JMX_FILE}" -l "${WORKSPACE}\\${REPORT_DIR}\\${RESULT_FILE}" -Jjmeter.save.saveservice.output_format=csv
                     """
                     
                     // Copy the generated report to your local Git repo folder
