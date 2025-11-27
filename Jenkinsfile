@@ -10,9 +10,9 @@ pipeline {
         // HTML_REPORT_DIR = 'jmeter_reports\\html_report'
         LOCAL_REPORT_DIR = 'D:\\jenkins-pipeline'  // Local Git repo directory
     }
-    triggers {
-        cron('*/2 * * * *') // This triggers the pipeline every 2 minutes
-    }
+    // triggers {
+    //     cron('*/2 * * * *') // This triggers the pipeline every 2 minutes
+    // }
     stages {
         stage('Checkout') {
             steps {
