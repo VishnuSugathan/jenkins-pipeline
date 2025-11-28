@@ -1,5 +1,5 @@
 timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
 1764241587821,665,Get Request,200,OK,Thread Group 1-1,text,true,,1139,154,1,1,https://postman-echo.com/get,664,0,412
 1764241588490,240,Post  Request,200,OK,Thread Group 1-1,text,true,,1252,209,1,1,https://postman-echo.com/post,240,0,0
-1764242740770,809,Get Request,200,OK,Thread Group 1-1,text,true,,1139,154,1,1,https://postman-echo.com/get,809,0,406
-1764242741590,328,Post  Request,200,OK,Thread Group 1-1,text,true,,1258,209,1,1,https://postman-echo.com/post,328,0,0
+1764304316847,783,Get Request,200,OK,Thread Group 1-1,text,true,,1140,154,1,1,https://postman-echo.com/get,783,0,451
+1764304317650,249,Post  Request,200,OK,Thread Group 1-1,text,true,,1250,209,1,1,https://postman-echo.com/post,249,0,0

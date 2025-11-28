@@ -47,6 +47,17 @@ pipeline {
                 }
             }
         }
+        stage('Publish Performance Report') {
+            steps {
+                script {
+                    if (fileExists("${REPORT_DIR}/result.jtl")) {
+                        performanceReport parsers: [[$class: 'JMeterCsvParser', glob: "${REPORT_DIR}/result.jtl"]]
+                    } else {
+                        echo "JMeter results file not found: ${REPORT_DIR}/result.jtl"
+                    }
+                }
+            }
+        }
 
         // stage('Push Reports to Git') {
         //     steps {
